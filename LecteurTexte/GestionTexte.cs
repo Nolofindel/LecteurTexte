@@ -13,10 +13,10 @@ namespace LecteurTexte
     public class GestionTexte
     {
 
-        public static void ListeMots(ListBox Box,TextBox Text)
+        public static void ListeMots(ListBox Box,TextBox Text,string path)
         {
 
-            FileStream Texte = new FileStream("Y:\\ExerciceCsharp\\TextePourExercice.txt", FileMode.Open);
+            FileStream Texte = new FileStream(path, FileMode.Open);
             StreamReader RTexte = new StreamReader(Texte, Encoding.GetEncoding(1252));
 
             List<string> Mots = new List<string>();
@@ -37,10 +37,9 @@ namespace LecteurTexte
                     {
                         foreach (string tm in Mots)
                         {
-                            //if (rmot.Equals(tm)) { nonpresent = false; ; }
                             if (String.Equals(rmot,tm,StringComparison.OrdinalIgnoreCase)) { nonpresent = false; ; }
                         }
-                        if (nonpresent) { Mots.Add(rmot); }
+                        if (nonpresent) { Mots.Add(rmot.ToLower()); }
                     }
                 }
                 strline = RTexte.ReadLine();
